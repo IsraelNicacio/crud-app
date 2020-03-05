@@ -7,13 +7,14 @@ import { ProdutoNovoComponent } from 'src/app/pages/produto-novo/produto-novo.co
 import { ProdutoEditarComponent } from 'src/app/pages/produto-editar/produto-editar.component';
 import { Error404Component } from 'src/app/pages/error404/error404.component';
 import { HomeComponent } from 'src/app/pages/home/home.component';
+import { AuthGuardService } from 'src/app/guards/auth-guard.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'produtos', component: ProdutosComponent, data: { title: 'Lista de produtos' } },
-  { path: 'produto-detalhe', component: ProdutoDetalheComponent, data: { title: 'Detalhe do produto' } },
+  { path: 'produto-detalhe', component: ProdutoDetalheComponent, data: { title: 'Detalhe do produto' }, canActivate:[AuthGuardService] },
   { path: 'produto-novo', component: ProdutoNovoComponent, data: { title: 'Cadatrar novo produto' } },
-  { path: 'produto-editar', component: ProdutoEditarComponent, data: { title: 'Editar produto' } },
+  { path: 'produto-editar', component: ProdutoEditarComponent, data: { title: 'Editar produto' }, canActivate:[AuthGuardService] },
   { path: '**', component: Error404Component, data: { title: '404' } }
 ]
 
